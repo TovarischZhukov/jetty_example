@@ -1,0 +1,19 @@
+version '1.0-SNAPSHOT'
+
+allprojects {
+    repositories {
+        mavenCentral()
+    }
+
+    apply plugin: 'java'
+
+    java {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    dependencies {
+        compile group: 'org.eclipse.jetty', name: 'jetty-server', version: '9.4.33.v20201020'
+        compile group: 'org.eclipse.jetty', name: 'jetty-servlet', version: '9.4.33.v20201020'
+    }
+}

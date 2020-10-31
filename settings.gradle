@@ -1,0 +1,11 @@
+rootProject.name = 'jetty_example'
+
+include 'client'
+include 'connectors'
+include 'core'
+include 'filters'
+include 'logging'
+include 'login'
+include 'session'
+include 'servlets'
+

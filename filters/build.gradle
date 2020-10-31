@@ -1,0 +1,9 @@
+dependencies {
+    compile project(':core')
+
+    compile group: 'org.eclipse.jetty', name: 'jetty-servlet', version: '9.4.33.v20201020'
+    compile group: 'org.eclipse.jetty', name: 'jetty-servlets', version: '9.4.33.v20201020'
+
+    compile group: 'com.google.inject', name: 'guice', version: '4.2.2'
+    compile group: 'com.google.inject.extensions', name: 'guice-servlet', version: '4.2.2'
+}

@@ -1,0 +1,3 @@
+dependencies {
+    compile group: 'org.eclipse.jetty', name: 'jetty-client', version: '9.4.33.v20201020'
+}

@@ -11,25 +11,26 @@ import org.eclipse.jetty.util.resource.Resource;
 
 import java.net.URL;
 
-@SuppressWarnings({"Duplicates", "NotNullNullableValidation"})
+@SuppressWarnings("NotNullNullableValidation")
 public final class LoginHash {
 
-    public static void main(String[] args) throws Exception {
-        final Server server = new DefaultServer().build(3466);
+  public static void main(String[] args) throws Exception {
+    final Server server = new DefaultServer().build();
 
-        ServletContextHandler context = new ServletContextHandler(ServletContextHandler.NO_SESSIONS);
-        context.setContextPath("/");
-        final URL resource = LoginService.class.getResource("/static");
-        context.setBaseResource(Resource.newResource(resource.toExternalForm()));
-        context.setWelcomeFiles(new String[]{"/static/example"});
-        context.addServlet(new ServletHolder("default", DefaultServlet.class), "/*");
+    ServletContextHandler context = new ServletContextHandler(ServletContextHandler.NO_SESSIONS);
+    context.setContextPath("/");
+    final URL resource = LoginService.class.getResource("/static");
+    context.setBaseResource(Resource.newResource(resource.toExternalForm()));
+    context.setWelcomeFiles(new String[]{"/static/second/example"});
+    context.addServlet(new ServletHolder("default", DefaultServlet.class), "/*");
 
-        final String hash_config = LoginHash.class.getResource("/hash_config").toExternalForm();
-        final HashLoginService hashLoginService = new HashLoginService("login", hash_config);
-        final ConstraintSecurityHandler securityHandler = new SecurityHandlerBuilder().build(server, hashLoginService);
-        securityHandler.setHandler(context);
-        server.setHandler(securityHandler);
+    final String hashConfig = LoginHash.class.getResource("/hash_config").toExternalForm();
+    final HashLoginService hashLoginService = new HashLoginService("login", hashConfig);
+    final ConstraintSecurityHandler securityHandler = new SecurityHandlerBuilder().build(hashLoginService);
+    server.addBean(hashLoginService);
+    securityHandler.setHandler(context);
+    server.setHandler(securityHandler);
 
-        server.start();
-    }
+    server.start();
+  }
 }

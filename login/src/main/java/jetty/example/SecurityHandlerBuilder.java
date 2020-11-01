@@ -4,7 +4,6 @@ import org.eclipse.jetty.security.ConstraintMapping;
 import org.eclipse.jetty.security.ConstraintSecurityHandler;
 import org.eclipse.jetty.security.LoginService;
 import org.eclipse.jetty.security.authentication.BasicAuthenticator;
-import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.util.security.Constraint;
 
 import java.util.ArrayList;
@@ -13,6 +12,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static java.util.Arrays.asList;
+
 @SuppressWarnings("NotNullNullableValidation")
 public final class SecurityHandlerBuilder {
   private static final String ROLE_ADMIN = "admin";
@@ -20,9 +21,7 @@ public final class SecurityHandlerBuilder {
 
   private final ConstraintSecurityHandler security = new ConstraintSecurityHandler();
 
-  public final ConstraintSecurityHandler build(Server server,
-                                               LoginService loginService) {
-    server.addBean(loginService);
+  public final ConstraintSecurityHandler build(LoginService loginService) {
     security.setLoginService(loginService);
 
     final List<ConstraintMapping> constraintMappings = new ArrayList<>();
@@ -33,7 +32,7 @@ public final class SecurityHandlerBuilder {
 
     constraintMappings.addAll(constraintGetMapping(
         buildConstraint(ROLE_USER, ROLE_ADMIN),
-        Collections.singletonList("/example")
+        asList("/example", "/")
     ));
 
     security.setConstraintMappings(constraintMappings);
@@ -50,14 +49,14 @@ public final class SecurityHandlerBuilder {
     return starterConstraint;
   }
 
+  private static Collection<ConstraintMapping> constraintGetMapping(Constraint constraint,
+                                                                    Collection<String> paths) {
+    return constraintMapping(constraint, paths, "GET");
+  }
+
   private static Collection<ConstraintMapping> constraintFullMapping(Constraint constraint,
                                                                      Collection<String> paths) {
     return constraintMapping(constraint, paths, "*");
-  }
-
-  protected static Collection<ConstraintMapping> constraintGetMapping(Constraint constraint,
-                                                                      Collection<String> paths) {
-    return constraintMapping(constraint, paths, "GET");
   }
 
   private static Collection<ConstraintMapping> constraintMapping(Constraint constraint,

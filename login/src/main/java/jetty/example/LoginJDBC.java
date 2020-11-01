@@ -24,9 +24,11 @@ public final class LoginJDBC {
     context.setWelcomeFiles(new String[]{"/static/example"});
     context.addServlet(new ServletHolder("default", DefaultServlet.class), "/*");
 
-    final String jdbc_config = LoginJDBC.class.getResource("/jdbc_config").toExternalForm();
-    final JDBCLoginService jdbcLoginService = new JDBCLoginService("login", jdbc_config);
-    final ConstraintSecurityHandler securityHandler = new SecurityHandlerBuilder().build(server, jdbcLoginService);
+
+    final String jdbcConfig = LoginJDBC.class.getResource("/jdbc_config").toExternalForm();
+    final JDBCLoginService jdbcLoginService = new JDBCLoginService("login", jdbcConfig);
+    final ConstraintSecurityHandler securityHandler = new SecurityHandlerBuilder().build(jdbcLoginService);
+    server.addBean(jdbcLoginService);
     securityHandler.setHandler(context);
     server.setHandler(securityHandler);
 

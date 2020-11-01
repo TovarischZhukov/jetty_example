@@ -14,7 +14,6 @@ public final class HandlersResource {
     final Server server = new DefaultServer().build();
 
     final ResourceHandler resourceHandler = new ResourceHandler();
-
     final URL resource = HandlersResource.class.getResource("/static");
     resourceHandler.setBaseResource(Resource.newResource(resource.toExternalForm()));
     resourceHandler.setDirectoriesListed(false);

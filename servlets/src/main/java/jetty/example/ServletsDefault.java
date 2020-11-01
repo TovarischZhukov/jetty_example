@@ -17,7 +17,7 @@ public final class ServletsDefault {
     ServletContextHandler context = new ServletContextHandler(
         ServletContextHandler.NO_SESSIONS
     );
-    context.setContextPath("/file");
+    context.setContextPath("/*");
     final URL resource = ServletsDefault.class.getResource("/static");
     context.setBaseResource(Resource.newResource(resource.toExternalForm()));
     context.setWelcomeFiles(new String[]{"/static/example"});
@@ -26,10 +26,9 @@ public final class ServletsDefault {
             "default",
             DefaultServlet.class
         ),
-        "/example"
+        "/*"
     );
     server.setHandler(context);
-
     server.start();
   }
 }

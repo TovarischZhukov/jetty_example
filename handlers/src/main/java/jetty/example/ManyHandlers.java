@@ -2,7 +2,6 @@ package jetty.example;
 
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Request;
-import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.*;
 
 import javax.servlet.ServletException;
@@ -57,7 +56,7 @@ public final class ManyHandlers {
       if (params.size() > 0) {
         response.setContentType("text/plain");
         response.getWriter().println(params);
-        ((Request) request).setHandled(true);
+        baseRequest.setHandled(true);
       }
     }
   }
@@ -71,7 +70,8 @@ public final class ManyHandlers {
       response.setContentType("text/html;charset=utf-8");
       response.setStatus(HttpServletResponse.SC_OK);
       baseRequest.setHandled(true);
-      response.getWriter().println("<h1>Hello jetty</h1>");
+      final var attr = request.getAttribute("welcome");
+      response.getWriter().println("<h1>" + attr + " jetty</h1>");
     }
   }
 

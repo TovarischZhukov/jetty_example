@@ -12,7 +12,7 @@ import java.net.URL;
 public final class ServletsDefault {
 
   public static void main(String[] args) throws Exception {
-    final Server server = new DefaultServer().build(3466);
+    final Server server = new DefaultServer().build();
 
     ServletContextHandler context = new ServletContextHandler(
         ServletContextHandler.NO_SESSIONS
@@ -21,8 +21,13 @@ public final class ServletsDefault {
     final URL resource = ServletsDefault.class.getResource("/static");
     context.setBaseResource(Resource.newResource(resource.toExternalForm()));
     context.setWelcomeFiles(new String[]{"/static/example"});
-    context.addServlet(new ServletHolder("default",
-        DefaultServlet.class), "/example");
+    context.addServlet(
+        new ServletHolder(
+            "default",
+            DefaultServlet.class
+        ),
+        "/example"
+    );
     server.setHandler(context);
 
     server.start();

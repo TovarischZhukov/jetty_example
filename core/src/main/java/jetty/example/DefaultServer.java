@@ -5,7 +5,7 @@ import org.eclipse.jetty.server.*;
 @SuppressWarnings({"NotNullNullableValidation", "FieldCanBeLocal"})
 public final class DefaultServer {
   private final Server server = new Server();
-  private static int port = 3466;
+  private static final int port = 3466;
 
   public Server build() {
     return build(port);

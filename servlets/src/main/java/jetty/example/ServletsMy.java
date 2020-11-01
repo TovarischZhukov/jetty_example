@@ -8,7 +8,7 @@ import org.eclipse.jetty.servlet.ServletHolder;
 public final class ServletsMy {
 
   public static void main(String[] args) throws Exception {
-    final Server server = new DefaultServer().build(3466);
+    final Server server = new DefaultServer().build();
 
     ServletContextHandler context = new ServletContextHandler(
         ServletContextHandler.NO_SESSIONS

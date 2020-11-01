@@ -7,7 +7,7 @@ import org.eclipse.jetty.util.resource.Resource;
 
 import java.net.URL;
 
-@SuppressWarnings({"Duplicates", "NotNullNullableValidation"})
+@SuppressWarnings("NotNullNullableValidation")
 public final class HandlersResource {
 
   public static void main(String[] args) throws Exception {

@@ -3,7 +3,7 @@ package jetty.example;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.ContextHandler;
 
-@SuppressWarnings({"Duplicates", "NotNullNullableValidation"})
+@SuppressWarnings("NotNullNullableValidation")
 public final class HandlersMy {
 
   public static void main(String[] args) throws Exception {

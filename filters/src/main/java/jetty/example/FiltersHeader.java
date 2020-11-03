@@ -36,7 +36,6 @@ public final class FiltersHeader {
     context.addFilter(filterHolder, "/*", EnumSet.of(DispatcherType.REQUEST));
 
     server.setHandler(context);
-
     server.start();
   }
 }

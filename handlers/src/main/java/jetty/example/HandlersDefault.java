@@ -10,7 +10,7 @@ public final class HandlersDefault {
     final Server server = new DefaultServer().build();
 
     final ContextHandler contextHandler = new ContextHandler();
-    contextHandler.setContextPath("/*");
+    contextHandler.setContextPath("/");
     contextHandler.setHandler(new DefaultHandler());
     server.setHandler(contextHandler);
 

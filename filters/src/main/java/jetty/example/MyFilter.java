@@ -26,6 +26,5 @@ public final class MyFilter implements Filter {
 
   @Override
   public void destroy() {
-
   }
 }

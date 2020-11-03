@@ -5,11 +5,11 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
 @SuppressWarnings("NotNullNullableValidation")
-public final class MyServlet implements Servlet {
+public final class ContentServlet implements Servlet {
   private final ContentGenerator contentGenerator;
   private ServletConfig servletConfig;
 
-  public MyServlet(ContentGenerator contentGenerator) {
+  public ContentServlet(ContentGenerator contentGenerator) {
     this.contentGenerator = contentGenerator;
   }
 

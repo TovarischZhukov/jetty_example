@@ -14,9 +14,9 @@ public final class FiltersGuice {
     final Server server = new DefaultServer().build(3466);
 
     ServletContextHandler context = new ServletContextHandler(ServletContextHandler.NO_SESSIONS);
-    context.setContextPath("/*");
+    context.setContextPath("/");
     context.addEventListener(new MyGuiceListener());
-    context.addFilter(GuiceFilter.class, "/*", EnumSet.of(DispatcherType.REQUEST));
+    context.addFilter(GuiceFilter.class, "/", EnumSet.of(DispatcherType.REQUEST));
     server.setHandler(context);
 
     server.start();

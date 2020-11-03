@@ -16,13 +16,13 @@ public final class ServletsProxy {
 
     ServletContextHandler context = new ServletContextHandler(
         proxy,
-        "/*",
+        "/",
         ServletContextHandler.NO_SESSIONS
     );
     ServletHolder proxyServlet = new ServletHolder(ProxyServlet.Transparent.class);
     proxyServlet.setInitParameter("proxyTo", "http://localhost:3466/");
     proxyServlet.setInitParameter("prefix", "/");
-    context.addServlet(proxyServlet, "/*");
+    context.addServlet(proxyServlet, "/");
 
     server.start();
   }

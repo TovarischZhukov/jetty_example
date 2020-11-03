@@ -19,14 +19,14 @@ public final class FiltersMy {
 
     ServletContextHandler context = new ServletContextHandler(ServletContextHandler.NO_SESSIONS);
     context.setContextPath("/");
-    final URL resource = FiltersQoS.class.getResource("/static");
+    final URL resource = FiltersMy.class.getResource("/");
     context.setBaseResource(Resource.newResource(resource.toExternalForm()));
     context.setWelcomeFiles(new String[]{"/static/example"});
-    context.addServlet(new ServletHolder("default", DefaultServlet.class), "/*");
+    context.addServlet(new ServletHolder("default", DefaultServlet.class), "/");
 
     final MyFilter filter = new MyFilter();
     final FilterHolder filterHolder = new FilterHolder(filter);
-    context.addFilter(filterHolder, "/*", EnumSet.of(DispatcherType.REQUEST));
+    context.addFilter(filterHolder, "/", EnumSet.of(DispatcherType.REQUEST));
     server.setHandler(context);
 
     server.start();

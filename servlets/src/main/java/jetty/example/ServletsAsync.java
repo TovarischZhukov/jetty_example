@@ -5,7 +5,7 @@ import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 
 @SuppressWarnings({"Duplicates", "NotNullNullableValidation"})
-public final class ServletsMy {
+public final class ServletsAsync {
 
   public static void main(String[] args) throws Exception {
     final Server server = new DefaultServer().build();
@@ -13,12 +13,10 @@ public final class ServletsMy {
     ServletContextHandler context = new ServletContextHandler(
         ServletContextHandler.NO_SESSIONS
     );
-    context.setContextPath("/*");
+    context.setContextPath("/");
     context.addServlet(
-        new ServletHolder("default",
-            new MyServlet(new ContentGenerator())
-        ),
-        "/*"
+        new ServletHolder("async", new AsyncServlet()),
+        "/"
     );
     server.setHandler(context);
 

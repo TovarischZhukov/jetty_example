@@ -32,7 +32,7 @@ public final class SecurityHandlerBuilder {
 
     constraintMappings.addAll(constraintGetMapping(
         buildConstraint(ROLE_USER, ROLE_ADMIN),
-        asList("/example", "/")
+        Collections.singletonList("/example")
     ));
 
     security.setConstraintMappings(constraintMappings);

@@ -29,7 +29,7 @@ public final class SessionFile {
     final URL resource = SessionFile.class.getResource("/static");
     context.setBaseResource(Resource.newResource(resource.toExternalForm()));
     context.setWelcomeFiles(new String[]{"/static/example"});
-    context.addServlet(new ServletHolder("default", DefaultServlet.class), "/*");
+    context.addServlet(new ServletHolder("default", DefaultServlet.class), "/");
 
     final SessionHandler sessionHandler = fileSessionHandler();
     sessionHandler.setHandler(context);

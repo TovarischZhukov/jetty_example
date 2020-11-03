@@ -1,15 +1,11 @@
 package jetty.example;
 
 import org.eclipse.jetty.server.Server;
-import org.eclipse.jetty.servlet.DefaultServlet;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
-import org.eclipse.jetty.util.resource.Resource;
-
-import java.net.URL;
 
 @SuppressWarnings({"Duplicates", "NotNullNullableValidation"})
-public final class ServletsDefault {
+public final class ServletsContent {
 
   public static void main(String[] args) throws Exception {
     final Server server = new DefaultServer().build();
@@ -18,17 +14,14 @@ public final class ServletsDefault {
         ServletContextHandler.NO_SESSIONS
     );
     context.setContextPath("/");
-    final URL resource = ServletsDefault.class.getResource("/static");
-    context.setBaseResource(Resource.newResource(resource.toExternalForm()));
-    context.setWelcomeFiles(new String[]{"/static/example"});
     context.addServlet(
-        new ServletHolder(
-            "default",
-            DefaultServlet.class
+        new ServletHolder("default",
+            new ContentServlet(new ContentGenerator())
         ),
         "/"
     );
     server.setHandler(context);
+
     server.start();
   }
 }

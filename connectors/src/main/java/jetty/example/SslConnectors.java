@@ -13,6 +13,13 @@ public final class SslConnectors {
 
     final HttpConfiguration httpConfig = new HttpConfiguration();
 
+    /*
+    httpConfig.setOutputBufferSize(32768);
+    httpConfig.setRequestHeaderSize(8192 * 2);
+    httpConfig.setResponseHeaderSize(8192 * 2);
+    httpConfig.setSendServerVersion(true);
+    httpConfig.setSendDateHeader(false);*/
+
     final SslContextFactory.Server sslContextFactory = new SslContextFactory.Server();
     sslContextFactory.setKeyStoreResource(Resource.newClassPathResource("keystore"));
     sslContextFactory.setKeyStorePassword("qwerty");

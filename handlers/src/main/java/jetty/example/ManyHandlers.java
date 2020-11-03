@@ -39,7 +39,9 @@ public final class ManyHandlers {
     var handlerList = new HandlerList();
 
     wrapper.setHandler(helloHandler);
+
     handlerList.setHandlers(new Handler[]{paramHandler, wrapper, defaultHandler});
+
     handlerCollection.setHandlers(new Handler[]{handlerList, logHandler});
 
     server.setHandler(handlerCollection);

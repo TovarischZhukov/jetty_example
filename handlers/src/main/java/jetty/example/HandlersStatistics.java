@@ -12,7 +12,7 @@ public final class HandlersStatistics {
     final Server server = new DefaultServer().build(3466);
 
     final ContextHandler contextHandler = new ContextHandler();
-    contextHandler.setContextPath("/*");
+    contextHandler.setContextPath("/");
     StatisticsHandler stats = new StatisticsHandler();
     contextHandler.setHandler(stats);
     new JettyStatisticsCollector(stats).register();

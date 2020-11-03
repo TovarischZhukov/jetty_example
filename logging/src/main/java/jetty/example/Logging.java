@@ -20,7 +20,6 @@ import static org.eclipse.jetty.server.CustomRequestLog.NCSA_FORMAT;
 public final class Logging {
   private static String timezone = "Europe/Moscow";
 
-
   public static void main(String[] args) throws Exception {
     final Server server = new DefaultServer().build();
 

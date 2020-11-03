@@ -13,7 +13,7 @@ public final class Client {
 
         httpClient.start();
 
-        final ContentResponse get = httpClient.GET("http://localhost:3466/example");
+        final ContentResponse get = httpClient.GET("http://localhost:3466/");
         System.out.println( new String(get.getContent()));
     }
 }
